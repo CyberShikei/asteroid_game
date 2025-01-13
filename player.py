@@ -1,6 +1,9 @@
 from circleshape import CircleShape
 from shot import Shot
-from constants import PLAYER_RADIUS, PLAYER_TURN_SPEED, PLAYER_SPEED, PLAYER_SHOOT_COOLDOWN
+from constants import (PLAYER_RADIUS,
+                       PLAYER_TURN_SPEED,
+                       PLAYER_SPEED,
+                       PLAYER_SHOOT_COOLDOWN)
 
 import pygame
 
