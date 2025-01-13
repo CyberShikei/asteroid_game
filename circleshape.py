@@ -16,12 +16,14 @@ class CircleShape(pygame.sprite.Sprite):
         self.radius = radius
 
     def draw(self, screen):
-        # sub-classes must override
-        pass
+        pygame.draw.circle(screen,
+                           (255, 255, 255),
+                           self.position,
+                           int(self.get_radius())
+                           )
 
     def update(self, dt):
-        # sub-classes must override
-        pass
+        self.position += self.velocity * dt
 
     def get_radius(self):
         return self.radius
