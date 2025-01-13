@@ -7,6 +7,7 @@ import pygame
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH, GAME_TITLE
 
 from player import Player
+from asteroid import Asteroid
 
 WELCOME_MESSAGE = "Welcome to Asteroids!"
 START_MESSAGE = "Starting asteroids!"
@@ -30,18 +31,19 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
-    # create a player object
-    player = Player(SCREEN_WIDTH // 2,
-                    SCREEN_HEIGHT // 2
-                    )
-
     # Create updateable and drawable groups
-    updateable = pygame.sprite.Group()
+    updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
 
+    # Create the asteroid group
+    asteroids = pygame.sprite.Group()
+
     # Add the player to the groups
-    updateable.add(player)
-    drawable.add(player)
+    Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+
+    # Create the player
+    player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
 
     # Start the game loop
     running = True
@@ -59,8 +61,8 @@ def main():
         screen.fill((0, 0, 0))
 
         # update
-        for updateable_sprite in updateable:
-            updateable_sprite.update(dt)
+        for updatable_sprite in updatable:
+            updatable_sprite.update(dt)
 
         # draw
         for drawable_sprite in drawable:
